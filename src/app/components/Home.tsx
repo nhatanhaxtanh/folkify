@@ -13,20 +13,20 @@ import {
   FileText,
 } from "lucide-react";
 import { instruments } from "../data/instruments";
+import danTranhImg from "../../assets/dantranh.jpg";
+import saoImg from "../../assets/sao.jpg";
+import danBauImg from "../../assets/danbau.jpg";
+import danNguyetImg from "../../assets/dannguyet.jpg";
+import danNhiImg from "../../assets/dannhi.jpg";
+import tyBaImg from "../../assets/tyba.jpg";
 
 const instrumentPhotos: Record<string, string> = {
-  "dan-tranh":
-    "https://images.unsplash.com/photo-1620877079420-26a3fb63eea8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
-  "sao-truc":
-    "https://images.unsplash.com/photo-1558299244-f4bb4dd735b2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
-  "dan-bau":
-    "https://images.unsplash.com/photo-1671468158321-93fa8aa3fdf2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
-  "dan-nguyet":
-    "https://images.unsplash.com/photo-1691319845092-919e48f2e213?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
-  "dan-nhi":
-    "https://images.unsplash.com/photo-1717834553682-194a1d829c31?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
-  "dan-ty-ba":
-    "https://images.unsplash.com/photo-1691319845092-919e48f2e213?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
+  "dan-tranh": danTranhImg,
+  "sao-truc": saoImg,
+  "dan-bau": danBauImg,
+  "dan-nguyet": danNguyetImg,
+  "dan-nhi": danNhiImg,
+  "dan-ty-ba": tyBaImg,
 };
 
 const featuredInstrument = instruments[0];
@@ -328,7 +328,7 @@ export function Home() {
                 onClick={() => navigate(`/learn/${inst.id}`)}
                 className="bg-white rounded-2xl overflow-hidden flex flex-col items-center cursor-pointer active:scale-[0.96] transition-transform border border-gray-100 shadow-sm"
               >
-                <div className="w-full h-20 overflow-hidden">
+                <div className="w-full h-28 overflow-hidden">
                   <img
                     src={instrumentPhotos[inst.id] || ""}
                     alt={inst.name}
@@ -336,7 +336,7 @@ export function Home() {
                   />
                 </div>
                 <p
-                  className="text-[#1A3A2B] text-[11px] text-center py-2 px-1"
+                  className="w-full bg-[#2D6A4F] text-white text-[11px] text-center py-2 px-1"
                   style={{ fontWeight: 600, lineHeight: 1.2 }}
                 >
                   {inst.name}

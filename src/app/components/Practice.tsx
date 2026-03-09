@@ -64,6 +64,7 @@ const noteColors = [
   "bg-red-400", "bg-orange-400", "bg-yellow-400", "bg-green-400",
   "bg-teal-400", "bg-blue-400", "bg-indigo-400", "bg-red-300",
 ];
+const scaleMidis = [60, 62, 64, 65, 67, 69, 71, 72];
 
 const aiTargets = [
   { label: "Đô4", midi: 60 },
@@ -119,6 +120,7 @@ export function Practice() {
   const sequenceStepRef = useRef(0);
   const sampleCountRef = useRef(0);
   const inTuneCountRef = useRef(0);
+  const audioContextRef = useRef<AudioContext | null>(null);
 
   useEffect(() => {
     if (isPlaying) {
@@ -221,6 +223,47 @@ export function Practice() {
     return () => stopAiDetection();
   }, []);
 
+  useEffect(() => {
+    return () => {
+      if (audioContextRef.current) {
+        void audioContextRef.current.close();
+        audioContextRef.current = null;
+      }
+    };
+  }, []);
+
+  const getAudioContext = () => {
+    if (audioContextRef.current) return audioContextRef.current;
+    const AudioCtx = window.AudioContext || (window as Window & { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
+    if (!AudioCtx) return null;
+    audioContextRef.current = new AudioCtx();
+    return audioContextRef.current;
+  };
+
+  const playScaleNote = (noteIndex: number) => {
+    const context = getAudioContext();
+    if (!context) return;
+
+    if (context.state === "suspended") {
+      void context.resume();
+    }
+
+    const now = context.currentTime;
+    const oscillator = context.createOscillator();
+    const gainNode = context.createGain();
+    oscillator.type = "triangle";
+    oscillator.frequency.value = midiToFrequency(scaleMidis[noteIndex] ?? 60);
+
+    gainNode.gain.setValueAtTime(0.0001, now);
+    gainNode.gain.exponentialRampToValueAtTime(0.18, now + 0.02);
+    gainNode.gain.exponentialRampToValueAtTime(0.0001, now + 0.45);
+
+    oscillator.connect(gainNode);
+    gainNode.connect(context.destination);
+    oscillator.start(now);
+    oscillator.stop(now + 0.48);
+  };
+
   const handleQuizAnswer = (index: number) => {
     setQuizAnswer(index);
     setQuizTotal((t) => t + 1);
@@ -235,6 +278,7 @@ export function Practice() {
 
   const handleNotePress = (i: number) => {
     setPressedNote(i);
+    playScaleNote(i);
     setTimeout(() => setPressedNote(null), 300);
   };
 
@@ -441,8 +485,7 @@ export function Practice() {
                 {notes.map((note, i) => (
                   <button
                     key={i}
-                    onMouseDown={() => handleNotePress(i)}
-                    onTouchStart={() => handleNotePress(i)}
+                    onPointerDown={() => handleNotePress(i)}
                     className={`flex-1 rounded-xl py-6 flex flex-col items-center gap-2 transition-all active:scale-95 ${
                       pressedNote === i ? `${noteColors[i]} scale-95 shadow-inner` : "bg-white shadow-md"
                     }`}

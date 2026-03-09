@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
-import { Search, ChevronRight, Star, Lock, Play } from "lucide-react";
+import { Search, ChevronRight, Star, Lock, Play, Music2 } from "lucide-react";
 import { instruments, categories } from "../data/instruments";
 
 const levelTabs = ["Tất cả", "Beginner", "Intermediate", "Advanced"];
@@ -25,7 +25,10 @@ export function Learn() {
       <div className="bg-[#1A3A2B] px-5 pt-12 pb-6 relative overflow-hidden">
         <div className="absolute -top-10 -right-10 w-40 h-40 rounded-full bg-white/5" />
         <div className="relative">
-          <h1 className="text-white" style={{ fontWeight: 700, fontSize: 20 }}>Học nhạc cụ 🎵</h1>
+          <div className="flex items-center gap-2">
+            <Music2 size={20} className="text-[#95D5B2]" />
+            <h1 className="text-white" style={{ fontWeight: 700, fontSize: 20 }}>Học nhạc cụ</h1>
+          </div>
           <p className="text-[#95D5B2] text-sm mt-1">{instruments.length} nhạc cụ · Video + Lộ trình</p>
 
           {/* Search */}
@@ -85,7 +88,7 @@ export function Learn() {
       <div className="flex-1 px-4 py-4 space-y-4">
         {filtered.length === 0 && (
           <div className="text-center py-16">
-            <span className="text-5xl">🎼</span>
+            <Music2 size={44} className="text-gray-300 mx-auto" />
             <p className="text-gray-500 mt-3">Không tìm thấy nhạc cụ</p>
           </div>
         )}
@@ -116,7 +119,7 @@ export function Learn() {
                 <div className="absolute bottom-0 left-0 right-0 p-4 flex items-end justify-between">
                   <div>
                     <div className="flex items-center gap-1.5 mb-1">
-                      <span className="text-xl">{inst.emoji}</span>
+                      <Music2 size={18} className="text-white" />
                       <h3 className="text-white" style={{ fontWeight: 700, fontSize: 16 }}>{inst.name}</h3>
                     </div>
                     <div className="flex items-center gap-2">
@@ -237,7 +240,7 @@ export function Learn() {
 
         {/* Info banner */}
         <div className="bg-[#1A3A2B] rounded-2xl p-4">
-          <p className="text-[#95D5B2] text-xs" style={{ fontWeight: 700 }}>🏮 Folkify — Học nhạc dân tộc</p>
+          <p className="text-[#95D5B2] text-xs" style={{ fontWeight: 700 }}>Folkify — Học nhạc dân tộc</p>
           <p className="text-[#52B788] text-xs mt-1 leading-relaxed">
             Lộ trình học từ Beginner → Advanced, kết hợp video bài giảng và sheet nhạc tương ứng.
           </p>

@@ -83,9 +83,12 @@ export function LessonDetail() {
               <span className={`text-xs px-2.5 py-1 rounded-full ${levelStyle}`}>
                 {lesson.level}
               </span>
-              <h1 className="text-white text-lg mt-2 pr-4" style={{ fontWeight: 700 }}>
-                {lesson.title}
-              </h1>
+              <div className="flex items-center gap-2 mt-2 pr-4">
+                <Play size={15} className="text-[#95D5B2]" />
+                <h1 className="text-white text-lg" style={{ fontWeight: 700 }}>
+                  {lesson.title}
+                </h1>
+              </div>
             </div>
             <div className="flex flex-col items-end gap-1.5 mt-1 flex-shrink-0">
               <div className="flex items-center gap-1.5 bg-white/10 rounded-full px-3 py-1.5">

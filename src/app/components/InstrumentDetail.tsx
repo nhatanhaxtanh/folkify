@@ -65,9 +65,12 @@ export function InstrumentDetail() {
               <span className="text-xs bg-[#2D6A4F]/70 text-[#95D5B2] px-2.5 py-1 rounded-full backdrop-blur-sm">
                 {instrument.category}
               </span>
-              <h1 className="text-white text-2xl mt-2" style={{ fontWeight: 700 }}>
-                {instrument.name}
-              </h1>
+              <div className="flex items-center gap-2 mt-2">
+                <Music size={18} className="text-[#95D5B2]" />
+                <h1 className="text-white text-2xl" style={{ fontWeight: 700 }}>
+                  {instrument.name}
+                </h1>
+              </div>
               <p className="text-[#52B788] text-xs">{instrument.englishName}</p>
               <div className="flex items-center gap-2 mt-1">
                 <MapPin size={12} className="text-[#95D5B2]" />

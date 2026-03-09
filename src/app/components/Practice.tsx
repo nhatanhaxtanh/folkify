@@ -12,6 +12,15 @@ import {
   Activity,
   Target,
   Gauge,
+  Drum,
+  Music2,
+  Brain,
+  Bot,
+  ArrowUp,
+  ArrowDown,
+  BookOpen,
+  Lightbulb,
+  Disc3,
 } from "lucide-react";
 import { instruments } from "../data/instruments";
 import { useRequirePremium, useSubscription } from "../subscription";
@@ -246,7 +255,10 @@ export function Practice() {
       <div className="bg-[#1A3A2B] px-5 pt-12 pb-6 relative overflow-hidden">
         <div className="absolute -top-8 -right-8 w-40 h-40 rounded-full bg-white/5" />
         <div className="relative">
-          <h1 className="text-white text-xl" style={{ fontWeight: 700 }}>Luyện tập 🥁</h1>
+          <div className="flex items-center gap-2">
+            <Drum size={20} className="text-[#95D5B2]" />
+            <h1 className="text-white text-xl" style={{ fontWeight: 700 }}>Luyện tập</h1>
+          </div>
           <p className="text-[#95D5B2] text-sm mt-1">Rèn kỹ năng âm nhạc mỗi ngày</p>
         </div>
       </div>
@@ -255,10 +267,10 @@ export function Practice() {
       <div className="bg-white border-b border-gray-100 px-4 py-2">
         <div className="flex gap-2">
           {[
-            { key: "rhythm", label: "🥁 Nhịp điệu" },
-            { key: "scale", label: "🎵 Gam âm" },
-            { key: "quiz", label: "🎯 Đố vui" },
-            { key: "ai", label: "🤖 AI Pitch" },
+            { key: "rhythm", label: "Nhịp điệu", icon: Drum },
+            { key: "scale", label: "Gam âm", icon: Music2 },
+            { key: "quiz", label: "Đố vui", icon: Brain },
+            { key: "ai", label: "AI Pitch", icon: Bot },
           ].map((s) => (
             <button
               key={s.key}
@@ -270,7 +282,10 @@ export function Practice() {
               }`}
               style={{ fontWeight: activeSection === s.key ? 600 : 400 }}
             >
-              {s.label}
+              <span className="inline-flex items-center justify-center gap-1.5">
+                <s.icon size={13} />
+                {s.label}
+              </span>
             </button>
           ))}
         </div>
@@ -399,9 +414,12 @@ export function Practice() {
         {activeSection === "scale" && (
           <>
             <div className="bg-white rounded-2xl p-4 shadow-sm border border-gray-100">
-              <p className="text-[#1A3A2B] text-sm mb-1" style={{ fontWeight: 700 }}>
-                🎵 Bàn phím gam âm cơ bản
-              </p>
+              <div className="flex items-center gap-1.5 mb-1">
+                <Music2 size={14} className="text-[#1A3A2B]" />
+                <p className="text-[#1A3A2B] text-sm" style={{ fontWeight: 700 }}>
+                  Bàn phím gam âm cơ bản
+                </p>
+              </div>
               <p className="text-gray-400 text-xs">Nhấn vào từng nốt để nghe âm thanh</p>
             </div>
 
@@ -433,13 +451,13 @@ export function Practice() {
             <div className="space-y-3">
               <p className="text-[#1A3A2B] text-sm" style={{ fontWeight: 700 }}>Bài tập gam âm</p>
               {[
-                { name: "Gam đi lên", desc: "Đô → Rê → Mi → Fa → Sol → La → Si → Đô'", icon: "⬆️" },
-                { name: "Gam đi xuống", desc: "Đô' → Si → La → Sol → Fa → Mi → Rê → Đô", icon: "⬇️" },
-                { name: "Gam ngũ cung", desc: "Đô → Rê → Mi → Sol → La (5 nốt dân tộc)", icon: "🎵" },
+                { name: "Gam đi lên", desc: "Đô → Rê → Mi → Fa → Sol → La → Si → Đô'", icon: ArrowUp },
+                { name: "Gam đi xuống", desc: "Đô' → Si → La → Sol → Fa → Mi → Rê → Đô", icon: ArrowDown },
+                { name: "Gam ngũ cung", desc: "Đô → Rê → Mi → Sol → La (5 nốt dân tộc)", icon: Music2 },
               ].map((ex) => (
                 <div key={ex.name} className="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 flex items-center gap-3">
                   <div className="w-10 h-10 bg-[#E8F5EE] rounded-xl flex items-center justify-center flex-shrink-0">
-                    <span className="text-xl">{ex.icon}</span>
+                    <ex.icon size={17} className="text-[#2D6A4F]" />
                   </div>
                   <div className="flex-1">
                     <p className="text-gray-800 text-sm" style={{ fontWeight: 600 }}>{ex.name}</p>
@@ -451,7 +469,10 @@ export function Practice() {
             </div>
 
             <div className="bg-[#E8F5EE] rounded-2xl p-4 border border-[#52B788]/30">
-              <p className="text-[#1A3A2B] text-xs" style={{ fontWeight: 700 }}>🎼 Về gam ngũ cung</p>
+              <div className="flex items-center gap-1.5">
+                <BookOpen size={13} className="text-[#1A3A2B]" />
+                <p className="text-[#1A3A2B] text-xs" style={{ fontWeight: 700 }}>Về gam ngũ cung</p>
+              </div>
               <p className="text-[#2D6A4F] text-xs mt-1 leading-relaxed">
                 Âm nhạc dân tộc Việt Nam chủ yếu dùng gam ngũ cung (5 nốt) thay vì gam 7 nốt của phương Tây, tạo nên âm điệu đặc trưng mang đậm màu sắc dân tộc.
               </p>
@@ -616,11 +637,12 @@ export function Practice() {
             </div>
 
             <div className="bg-[#1A3A2B] rounded-2xl p-6 text-center">
-              <p className="text-[#95D5B2] text-xs mb-4">🎯 Câu hỏi</p>
+              <div className="flex items-center justify-center gap-1.5 mb-4">
+                <Target size={13} className="text-[#95D5B2]" />
+                <p className="text-[#95D5B2] text-xs">Câu hỏi</p>
+              </div>
               <div className="w-20 h-20 bg-white/15 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-5xl">
-                  {instruments[Math.floor(quizNote / 2) % instruments.length]?.emoji}
-                </span>
+                <Disc3 size={38} className="text-white" />
               </div>
               <p className="text-white text-base" style={{ fontWeight: 600 }}>
                 Nhạc cụ nào có tiếng vang đặc trưng như thế này?
@@ -647,7 +669,7 @@ export function Practice() {
                         : "border-gray-100 active:border-[#2D6A4F]"
                     }`}
                   >
-                    <span className="text-3xl">{inst.emoji}</span>
+                    <Disc3 size={24} className="text-[#2D6A4F]" />
                     <p className="text-gray-700 text-xs text-center" style={{ fontWeight: 600 }}>{inst.name}</p>
                     {showResult && isCorrect && <span className="text-[#2D6A4F] text-xs">✓ Đúng!</span>}
                     {showResult && isSelected && !isCorrect && <span className="text-red-500 text-xs">✗ Sai</span>}
@@ -657,7 +679,10 @@ export function Practice() {
             </div>
 
             <div className="bg-[#E8F5EE] rounded-2xl p-4 border border-[#52B788]/30">
-              <p className="text-[#1A3A2B] text-xs" style={{ fontWeight: 700 }}>💡 Bạn có biết?</p>
+              <div className="flex items-center gap-1.5">
+                <Lightbulb size={13} className="text-[#1A3A2B]" />
+                <p className="text-[#1A3A2B] text-xs" style={{ fontWeight: 700 }}>Bạn có biết?</p>
+              </div>
               <p className="text-[#2D6A4F] text-xs mt-1 leading-relaxed">
                 Âm nhạc dân tộc Việt Nam có hơn 50 loại nhạc cụ, mỗi vùng miền có những loại đặc trưng riêng.
               </p>

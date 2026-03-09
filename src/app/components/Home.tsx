@@ -10,9 +10,9 @@ import {
   Trophy,
   Clock,
   Zap,
+  FileText,
 } from "lucide-react";
 import { instruments } from "../data/instruments";
-import folkifyLogo from "../../assets/5c08b0afb61b3fc50bd03d450d0cf436a7d30ab4.png";
 
 const instrumentPhotos: Record<string, string> = {
   "dan-tranh":
@@ -25,8 +25,8 @@ const instrumentPhotos: Record<string, string> = {
     "https://images.unsplash.com/photo-1691319845092-919e48f2e213?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
   "dan-nhi":
     "https://images.unsplash.com/photo-1717834553682-194a1d829c31?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
-  trong:
-    "https://images.unsplash.com/photo-1768478563700-20b8c4806377?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
+  "dan-ty-ba":
+    "https://images.unsplash.com/photo-1691319845092-919e48f2e213?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
 };
 
 const featuredInstrument = instruments[0];
@@ -183,7 +183,7 @@ export function Home() {
           onClick={() => navigate("/practice")}
         >
           <div className="w-12 h-12 bg-white/15 rounded-xl flex items-center justify-center flex-shrink-0">
-            <span className="text-2xl">🎯</span>
+            <Target size={22} className="text-white" />
           </div>
           <div className="flex-1">
             <p className="text-[#95D5B2] text-xs mb-0.5">Thử thách hôm nay</p>
@@ -382,7 +382,7 @@ export function Home() {
           className="bg-gradient-to-r from-[#1A3A2B] to-[#2D6A4F] rounded-2xl p-4 flex items-center gap-4 cursor-pointer active:scale-[0.98] transition-transform"
         >
           <div className="w-12 h-12 bg-white/15 rounded-xl flex items-center justify-center flex-shrink-0">
-            <span className="text-2xl">📄</span>
+            <FileText size={22} className="text-white" />
           </div>
           <div className="flex-1">
             <p className="text-[#95D5B2] text-xs mb-0.5">Thư viện sheet nhạc</p>

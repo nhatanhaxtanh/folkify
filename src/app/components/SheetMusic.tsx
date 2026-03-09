@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Search, Download, Eye, Lock, FileText, X } from "lucide-react";
+import { Search, Download, Eye, Lock, FileText, X, Calendar } from "lucide-react";
 import { sheetMusicLibrary, sheetGenres, sheetLevels } from "../data/instruments";
 import { useRequirePremium, useSubscription } from "../subscription";
 
@@ -36,7 +36,10 @@ export function SheetMusic() {
       <div className="bg-[#1A3A2B] px-5 pt-12 pb-6 relative overflow-hidden">
         <div className="absolute -top-8 -right-8 w-40 h-40 rounded-full bg-white/5" />
         <div className="relative">
-          <h1 className="text-white" style={{ fontWeight: 700, fontSize: 20 }}>Sheet nhạc 📄</h1>
+          <div className="flex items-center gap-2">
+            <FileText size={20} className="text-[#95D5B2]" />
+            <h1 className="text-white" style={{ fontWeight: 700, fontSize: 20 }}>Sheet nhạc</h1>
+          </div>
           <p className="text-[#95D5B2] text-sm mt-1">{freeCount} miễn phí · {premiumCount} premium</p>
 
           <div className="mt-4 flex items-center gap-3 bg-white/10 rounded-2xl px-4 py-3">
@@ -171,7 +174,10 @@ export function SheetMusic() {
 
         {/* Update info */}
         <div className="mt-4 bg-gradient-to-r from-[#1A3A2B] to-[#2D6A4F] rounded-2xl p-4">
-          <p className="text-[#95D5B2] text-xs" style={{ fontWeight: 700 }}>📅 Cập nhật định kỳ</p>
+          <div className="flex items-center gap-1.5">
+            <Calendar size={13} className="text-[#95D5B2]" />
+            <p className="text-[#95D5B2] text-xs" style={{ fontWeight: 700 }}>Cập nhật định kỳ</p>
+          </div>
           <p className="text-[#52B788] text-xs mt-1">Thư viện sheet nhạc được bổ sung hàng tuần với các bản nhạc dân tộc và hiện đại.</p>
         </div>
       </div>

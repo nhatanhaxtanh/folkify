@@ -1,4 +1,4 @@
-import { Check, Crown, Sparkles } from "lucide-react";
+import { ArrowLeft, Check, Crown, Sparkles } from "lucide-react";
 import { useLocation, useNavigate } from "react-router";
 import { useSubscription } from "../subscription";
 
@@ -27,12 +27,22 @@ export function PremiumPlans() {
         <div className="absolute -top-10 -right-10 w-44 h-44 bg-white/10 rounded-full" />
         <div className="absolute bottom-2 -left-7 w-24 h-24 bg-white/10 rounded-full" />
         <div className="relative">
+          <button
+            onClick={() => navigate(-1)}
+            className="w-10 h-10 rounded-xl bg-white/10 border border-white/15 flex items-center justify-center mb-4"
+            aria-label="Quay lại"
+          >
+            <ArrowLeft size={18} className="text-white" />
+          </button>
           <div className="w-14 h-14 rounded-2xl bg-white/15 flex items-center justify-center mb-4">
             <Crown size={28} className="text-amber-300" />
           </div>
-          <h1 className="text-white text-2xl" style={{ fontWeight: 700 }}>
-            Folkify Premium
-          </h1>
+          <div className="flex items-center gap-2">
+            <Crown size={20} className="text-amber-300" />
+            <h1 className="text-white text-2xl" style={{ fontWeight: 700 }}>
+              Folkify Premium
+            </h1>
+          </div>
           <p className="text-[#B7E4C7] text-sm mt-2">
             Nâng cấp để mở khóa toàn bộ sheet và nội dung nâng cao.
           </p>

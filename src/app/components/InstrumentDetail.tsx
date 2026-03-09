@@ -98,7 +98,7 @@ export function InstrumentDetail() {
             style={{ width: `${progressPercent}%` }}
           />
         </div>
-        <div className="flex gap-2 mt-2">
+        <div className="flex flex-wrap gap-2 mt-2">
           {beginnerLessons.length > 0 && (
             <span className="text-[10px] px-2 py-0.5 rounded-full bg-green-100 text-green-700">
               {beginnerLessons.length} Beginner
@@ -139,7 +139,7 @@ export function InstrumentDetail() {
       </div>
 
       {/* Tab Content */}
-      <div className="flex-1 px-4 py-4 pb-36">
+      <div className="flex-1 px-4 py-4 pb-[calc(14rem+env(safe-area-inset-bottom))]">
         {/* Lessons Tab */}
         {activeTab === 0 && (
           <div className="space-y-3">
@@ -296,7 +296,7 @@ export function InstrumentDetail() {
       </div>
 
       {/* CTA Button */}
-      <div className="fixed bottom-20 left-1/2 -translate-x-1/2 w-full max-w-sm z-20 px-4 pb-4 pt-2 bg-gradient-to-t from-[#F7FAF8] to-transparent">
+      <div className="fixed left-1/2 -translate-x-1/2 bottom-[calc(4.75rem+env(safe-area-inset-bottom))] w-full max-w-sm z-20 px-4 pb-4 pt-2 bg-gradient-to-t from-[#F7FAF8] to-transparent">
         <button
           onClick={() =>
             navigate(

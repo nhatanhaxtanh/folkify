@@ -1,3 +1,12 @@
+import beoDatMayTroiSheet from "../../assets/beodatmaytroi.jpg";
+import daCoHoaiLangSheet from "../../assets/dacohoailang.jpg";
+import luuThuyHanhVanSheet from "../../assets/luuthuyhanhvan.jpg";
+import lyConSaoSheet from "../../assets/lyconsao.jpg";
+import lyNguaOSheet from "../../assets/lynguao.jpg";
+import tiengDanBauSheet from "../../assets/tiengdanbau.jpg";
+import trongComSheet from "../../assets/trongcom.jpg";
+import xuanVeTrenBanSheet from "../../assets/xuanvetrenban.jpg";
+
 export interface Lesson {
   id: string;
   title: string;
@@ -578,7 +587,7 @@ export const sheetMusicLibrary: SheetMusic[] = [
     genre: "Dân ca",
     level: "Dễ",
     isPremium: false,
-    previewUrl: "https://images.unsplash.com/photo-1769867303648-0a3ed8115440?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
+    previewUrl: lyConSaoSheet,
     pages: 2,
     instrument: "Đàn Tranh",
   },
@@ -589,7 +598,7 @@ export const sheetMusicLibrary: SheetMusic[] = [
     genre: "Vọng cổ",
     level: "Trung bình",
     isPremium: false,
-    previewUrl: "https://images.unsplash.com/photo-1762006211376-b22a3134cc58?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
+    previewUrl: daCoHoaiLangSheet,
     pages: 4,
     instrument: "Đàn Tranh",
   },
@@ -600,7 +609,7 @@ export const sheetMusicLibrary: SheetMusic[] = [
     genre: "Dân ca",
     level: "Dễ",
     isPremium: false,
-    previewUrl: "https://images.unsplash.com/photo-1672578249566-3f4b6d564aa2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
+    previewUrl: beoDatMayTroiSheet,
     pages: 2,
     instrument: "Sáo Trúc",
   },
@@ -611,18 +620,18 @@ export const sheetMusicLibrary: SheetMusic[] = [
     genre: "Nhạc mới",
     level: "Trung bình",
     isPremium: true,
-    previewUrl: "https://images.unsplash.com/photo-1673637082482-55952ee63ef4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
+    previewUrl: tiengDanBauSheet,
     pages: 3,
     instrument: "Đàn Bầu",
   },
   {
     id: "sm-5",
-    title: "Hành Vân",
+    title: "Thủy Hành Vân",
     composer: "Nhạc lễ Nam Bộ",
     genre: "Nhạc lễ",
     level: "Khó",
     isPremium: true,
-    previewUrl: "https://images.unsplash.com/photo-1763058389604-e407ce6bd702?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
+    previewUrl: luuThuyHanhVanSheet,
     pages: 6,
     instrument: "Đàn Nhị",
   },
@@ -633,7 +642,7 @@ export const sheetMusicLibrary: SheetMusic[] = [
     genre: "Dân ca",
     level: "Dễ",
     isPremium: false,
-    previewUrl: "https://images.unsplash.com/photo-1762951046421-a8a6a26c5ced?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
+    previewUrl: trongComSheet,
     pages: 2,
     instrument: "Sáo Trúc",
   },
@@ -644,7 +653,7 @@ export const sheetMusicLibrary: SheetMusic[] = [
     genre: "Nhạc mới",
     level: "Trung bình",
     isPremium: true,
-    previewUrl: "https://images.unsplash.com/photo-1759156240671-c646dc7386f4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
+    previewUrl: xuanVeTrenBanSheet,
     pages: 4,
     instrument: "Đàn Tranh",
   },
@@ -655,7 +664,7 @@ export const sheetMusicLibrary: SheetMusic[] = [
     genre: "Dân ca",
     level: "Dễ",
     isPremium: false,
-    previewUrl: "https://images.unsplash.com/photo-1762006211376-b22a3134cc58?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400",
+    previewUrl: lyNguaOSheet,
     pages: 2,
     instrument: "Đàn Nguyệt",
   },

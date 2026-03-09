@@ -49,6 +49,10 @@ export function LessonDetail() {
       ? "bg-yellow-100 text-yellow-700"
       : "bg-red-100 text-red-700";
 
+  const showYoutubeVideo = instrument.id === "dan-tranh" && lesson.id === "dt-1";
+  const youtubeEmbedUrl =
+    "https://www.youtube.com/embed/PehCcuN10M0?list=PLPfXdEzIap5iEbYjcDI3vdgrM7nSML-3u&index=1";
+
   const toggleStep = (index: number) => {
     const updated = new Set(completedSteps);
     if (updated.has(index)) {
@@ -65,11 +69,11 @@ export function LessonDetail() {
   return (
     <div className="flex flex-col min-h-full bg-[#F7FAF8]">
       {/* Header */}
-      <div className="bg-[#1A3A2B] px-5 pt-12 pb-6 relative overflow-hidden">
+      <div className="bg-[#1A3A2B] px-5 pt-12 pb-8 relative overflow-hidden">
         <div className="absolute -top-8 -right-8 w-36 h-36 rounded-full bg-white/5" />
-        <div className="absolute bottom-0 left-0 right-0 h-8 bg-[#F7FAF8] rounded-t-3xl" />
+        <div className="absolute -bottom-4 left-0 right-0 h-10 bg-[#F7FAF8] rounded-t-3xl" />
 
-        <div className="relative">
+        <div className="relative z-10">
           <button
             onClick={() => navigate(-1)}
             className="flex items-center gap-2 text-[#95D5B2] text-sm mb-5"
@@ -90,7 +94,7 @@ export function LessonDetail() {
                 </h1>
               </div>
             </div>
-            <div className="flex flex-col items-end gap-1.5 mt-1 flex-shrink-0">
+            <div className="flex flex-col items-end gap-1.5 -mt-1 flex-shrink-0">
               <div className="flex items-center gap-1.5 bg-white/10 rounded-full px-3 py-1.5">
                 <Clock size={12} className="text-[#95D5B2]" />
                 <span className="text-white text-xs">{lesson.duration}</span>
@@ -128,54 +132,69 @@ export function LessonDetail() {
           <p className="text-gray-600 text-xs mt-2 leading-relaxed">{lesson.description}</p>
         </div>
 
-        {/* Video Player Mock */}
-        <div className="bg-[#1A3A2B] rounded-2xl p-5">
-          {/* Thumbnail */}
-          <div className="relative rounded-xl overflow-hidden mb-4" style={{ height: 120 }}>
-            <img src={lesson.videoThumb} alt={lesson.title} className="w-full h-full object-cover" />
-            <div className="absolute inset-0 bg-[#1A3A2B]/50 flex items-center justify-center">
-              <button
-                onClick={() => setIsPlaying(!isPlaying)}
-                className="w-14 h-14 bg-white rounded-full flex items-center justify-center shadow-lg active:scale-95 transition-transform"
-              >
-                {isPlaying ? (
-                  <Pause size={22} className="text-[#1A3A2B]" />
-                ) : (
-                  <Play size={22} className="text-[#1A3A2B] ml-0.5" fill="#1A3A2B" />
-                )}
-              </button>
+        {/* Video */}
+        {showYoutubeVideo ? (
+          <div className="bg-[#1A3A2B] rounded-2xl p-3">
+            <div className="relative w-full overflow-hidden rounded-xl" style={{ paddingTop: "56.25%" }}>
+              <iframe
+                src={youtubeEmbedUrl}
+                title="Làm quen với đàn tranh"
+                className="absolute inset-0 h-full w-full"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+              />
             </div>
-            {isPlaying && (
-              <div className="absolute bottom-2 left-3 right-3">
-                <div className="flex items-center gap-1.5 justify-center">
-                  {Array.from({ length: 24 }).map((_, i) => (
-                    <div
-                      key={i}
-                      className="bg-[#52B788]/70 rounded-full w-0.5"
-                      style={{
-                        height: `${6 + Math.abs(Math.sin(i * 0.7)) * 14}px`,
-                      }}
-                    />
-                  ))}
+          </div>
+        ) : (
+          <div className="bg-[#1A3A2B] rounded-2xl p-5">
+            {/* Thumbnail */}
+            <div className="relative rounded-xl overflow-hidden mb-4" style={{ height: 120 }}>
+              <img src={lesson.videoThumb} alt={lesson.title} className="w-full h-full object-cover" />
+              <div className="absolute inset-0 bg-[#1A3A2B]/50 flex items-center justify-center">
+                <button
+                  onClick={() => setIsPlaying(!isPlaying)}
+                  className="w-14 h-14 bg-white rounded-full flex items-center justify-center shadow-lg active:scale-95 transition-transform"
+                >
+                  {isPlaying ? (
+                    <Pause size={22} className="text-[#1A3A2B]" />
+                  ) : (
+                    <Play size={22} className="text-[#1A3A2B] ml-0.5" fill="#1A3A2B" />
+                  )}
+                </button>
+              </div>
+              {isPlaying && (
+                <div className="absolute bottom-2 left-3 right-3">
+                  <div className="flex items-center gap-1.5 justify-center">
+                    {Array.from({ length: 24 }).map((_, i) => (
+                      <div
+                        key={i}
+                        className="bg-[#52B788]/70 rounded-full w-0.5"
+                        style={{
+                          height: `${6 + Math.abs(Math.sin(i * 0.7)) * 14}px`,
+                        }}
+                      />
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            <p className="text-[#95D5B2] text-xs mb-3" style={{ fontWeight: 600 }}>🎵 Nghe mẫu bài học</p>
+            <div className="flex items-center gap-4">
+              <div className="flex-1">
+                <div className="w-full h-1.5 bg-white/20 rounded-full overflow-hidden mb-1.5">
+                  <div className="w-1/3 h-full bg-[#52B788] rounded-full" />
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-[#52B788] text-xs">0:23</span>
+                  <span className="text-[#52B788] text-xs">{lesson.duration}</span>
                 </div>
               </div>
-            )}
-          </div>
-
-          <p className="text-[#95D5B2] text-xs mb-3" style={{ fontWeight: 600 }}>🎵 Nghe mẫu bài học</p>
-          <div className="flex items-center gap-4">
-            <div className="flex-1">
-              <div className="w-full h-1.5 bg-white/20 rounded-full overflow-hidden mb-1.5">
-                <div className="w-1/3 h-full bg-[#52B788] rounded-full" />
-              </div>
-              <div className="flex justify-between">
-                <span className="text-[#52B788] text-xs">0:23</span>
-                <span className="text-[#52B788] text-xs">{lesson.duration}</span>
-              </div>
+              <Volume2 size={16} className="text-[#52B788] flex-shrink-0" />
             </div>
-            <Volume2 size={16} className="text-[#52B788] flex-shrink-0" />
           </div>
-        </div>
+        )}
 
         {/* Steps */}
         <div className="space-y-3">

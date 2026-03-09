@@ -108,9 +108,12 @@ export function SheetMusic() {
             return (
             <div key={sheet.id} className="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100">
               {/* Preview thumb */}
-              <div className="relative h-28 overflow-hidden">
-                <img src={sheet.previewUrl} alt={sheet.title} className="w-full h-full object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+              <div className="relative h-40 overflow-hidden bg-gray-50">
+                <img
+                  src={sheet.previewUrl}
+                  alt={sheet.title}
+                  className="w-full h-full object-contain"
+                />
                 {sheet.isPremium && (
                   <div className="absolute top-2 right-2 flex items-center gap-1 bg-amber-400 rounded-full px-2 py-0.5">
                     <Lock size={9} className="text-white" />
@@ -212,30 +215,12 @@ export function SheetMusic() {
             </div>
 
             {/* Preview */}
-            <div className="relative mx-4 mt-4 mb-2 rounded-2xl overflow-hidden" style={{ height: 220 }}>
-              <img src={previewSheet.previewUrl} alt={previewSheet.title} className="w-full h-full object-cover" />
-              {/* Sheet lines overlay */}
-              <div className="absolute inset-0 bg-white/85 flex flex-col justify-center items-center px-6">
-                <div className="w-full space-y-3">
-                  {Array.from({ length: 5 }).map((_, i) => (
-                    <div key={i} className="w-full h-px bg-gray-800/60" />
-                  ))}
-                </div>
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="space-y-5 w-full px-4">
-                    {Array.from({ length: 3 }).map((_, row) => (
-                      <div key={row} className="flex items-end gap-2 justify-center">
-                        {Array.from({ length: 8 }).map((_, j) => (
-                          <div key={j} className="flex flex-col items-center gap-0.5">
-                            <div className="w-2 h-3 rounded-sm bg-gray-800/60" />
-                            <div className="w-3 h-2 rounded-full bg-gray-800/70" />
-                          </div>
-                        ))}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
+            <div className="relative mx-4 mt-4 mb-2 rounded-2xl overflow-hidden bg-gray-50 aspect-[3/4]">
+              <img
+                src={previewSheet.previewUrl}
+                alt={previewSheet.title}
+                className="w-full h-full object-contain"
+              />
               {previewSheet.isPremium && !isPremium && (
                 <div className="absolute inset-0 bg-amber-900/30 backdrop-blur-[2px] flex items-center justify-center">
                   <div className="text-center">

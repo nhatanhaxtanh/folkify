@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import { Search, ChevronRight, Star, Lock, Play, Music2 } from "lucide-react";
 import { instruments, categories } from "../data/instruments";
+import folkifyLogo from "../../assets/logofolkify.png";
 
 const levelTabs = ["Tất cả", "Beginner", "Intermediate", "Advanced"];
 
@@ -25,6 +26,17 @@ export function Learn() {
       <div className="bg-[#1A3A2B] px-5 pt-12 pb-6 relative overflow-hidden">
         <div className="absolute -top-10 -right-10 w-40 h-40 rounded-full bg-white/5" />
         <div className="relative">
+          <div className="flex items-center gap-1.5 mb-4 -mt-2">
+            <img
+              src={folkifyLogo}
+              alt="Folkify"
+              className="w-10 h-10 rounded-xl"
+            />
+            <span className="text-white text-xl" style={{ fontWeight: 700 }}>
+              Folkify
+            </span>
+          </div>
+
           <div className="flex items-center gap-2">
             <Music2 size={20} className="text-[#95D5B2]" />
             <h1 className="text-white" style={{ fontWeight: 700, fontSize: 20 }}>Học nhạc cụ</h1>

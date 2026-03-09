@@ -24,6 +24,7 @@ import {
 } from "lucide-react";
 import { instruments } from "../data/instruments";
 import { useRequirePremium, useSubscription } from "../subscription";
+import folkifyLogo from "../../assets/logofolkify.png";
 
 const rhythmPatterns = [
   {
@@ -255,6 +256,17 @@ export function Practice() {
       <div className="bg-[#1A3A2B] px-5 pt-12 pb-6 relative overflow-hidden">
         <div className="absolute -top-8 -right-8 w-40 h-40 rounded-full bg-white/5" />
         <div className="relative">
+          <div className="flex items-center gap-1.5 mb-4 -mt-2">
+            <img
+              src={folkifyLogo}
+              alt="Folkify"
+              className="w-10 h-10 rounded-xl"
+            />
+            <span className="text-white text-xl" style={{ fontWeight: 700 }}>
+              Folkify
+            </span>
+          </div>
+
           <div className="flex items-center gap-2">
             <Drum size={20} className="text-[#95D5B2]" />
             <h1 className="text-white text-xl" style={{ fontWeight: 700 }}>Luyện tập</h1>

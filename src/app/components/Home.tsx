@@ -19,6 +19,7 @@ import danBauImg from "../../assets/danbau.jpg";
 import danNguyetImg from "../../assets/dannguyet.jpg";
 import danNhiImg from "../../assets/dannhi.jpg";
 import tyBaImg from "../../assets/tyba.jpg";
+import folkifyLogo from "../../assets/logofolkify.png";
 
 const instrumentPhotos: Record<string, string> = {
   "dan-tranh": danTranhImg,
@@ -99,6 +100,17 @@ export function Home() {
         <div className="absolute -bottom-6 -left-6 w-32 h-32 rounded-full bg-white/5" />
 
         <div className="relative">
+          <div className="flex items-center gap-1.5 mb-5 -mt-2">
+            <img
+              src={folkifyLogo}
+              alt="Folkify"
+              className="w-10 h-10 rounded-xl"
+            />
+            <span className="text-white text-xl" style={{ fontWeight: 700 }}>
+              Folkify
+            </span>
+          </div>
+
           {/* Brand row */}
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2.5">

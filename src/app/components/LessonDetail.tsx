@@ -13,6 +13,7 @@ import {
   Zap,
 } from "lucide-react";
 import { instruments } from "../data/instruments";
+import folkifyLogo from "../../assets/logofolkify.png";
 
 export function LessonDetail() {
   const { id, lessonId } = useParams();
@@ -74,6 +75,17 @@ export function LessonDetail() {
         <div className="absolute -bottom-4 left-0 right-0 h-10 bg-[#F7FAF8] rounded-t-3xl" />
 
         <div className="relative z-10">
+          <div className="flex items-center gap-1.5 mb-4 -mt-2">
+            <img
+              src={folkifyLogo}
+              alt="Folkify"
+              className="w-10 h-10 rounded-xl"
+            />
+            <span className="text-white text-xl" style={{ fontWeight: 700 }}>
+              Folkify
+            </span>
+          </div>
+
           <button
             onClick={() => navigate(-1)}
             className="flex items-center gap-2 text-[#95D5B2] text-sm mb-5"

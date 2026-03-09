@@ -14,6 +14,7 @@ import {
   Zap,
 } from "lucide-react";
 import { instruments } from "../data/instruments";
+import folkifyLogo from "../../assets/logofolkify.png";
 
 const tabs = ["Bài học", "Bài hát", "Thông tin"];
 
@@ -57,6 +58,17 @@ export function InstrumentDetail() {
         >
           <ArrowLeft size={18} className="text-white" />
         </button>
+
+        <div className="absolute top-12 right-4 flex items-center gap-1.5 bg-black/30 backdrop-blur-sm rounded-xl px-2.5 py-1.5">
+          <img
+            src={folkifyLogo}
+            alt="Folkify"
+            className="w-6 h-6 rounded-lg"
+          />
+          <span className="text-white text-sm" style={{ fontWeight: 700 }}>
+            Folkify
+          </span>
+        </div>
 
         {/* Info */}
         <div className="absolute bottom-0 left-0 right-0 p-5">

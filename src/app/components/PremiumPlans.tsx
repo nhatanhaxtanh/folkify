@@ -1,6 +1,7 @@
 import { ArrowLeft, Check, Crown, Sparkles } from "lucide-react";
 import { useLocation, useNavigate } from "react-router";
 import { useSubscription } from "../subscription";
+import folkifyLogo from "../../assets/logofolkify.png";
 
 type PremiumRouteState = {
   from?: string;
@@ -27,6 +28,17 @@ export function PremiumPlans() {
         <div className="absolute -top-10 -right-10 w-44 h-44 bg-white/10 rounded-full" />
         <div className="absolute bottom-2 -left-7 w-24 h-24 bg-white/10 rounded-full" />
         <div className="relative">
+          <div className="flex items-center gap-1.5 mb-4 -mt-2">
+            <img
+              src={folkifyLogo}
+              alt="Folkify"
+              className="w-10 h-10 rounded-xl"
+            />
+            <span className="text-white text-xl" style={{ fontWeight: 700 }}>
+              Folkify
+            </span>
+          </div>
+
           <button
             onClick={() => navigate(-1)}
             className="w-10 h-10 rounded-xl bg-white/10 border border-white/15 flex items-center justify-center mb-4"

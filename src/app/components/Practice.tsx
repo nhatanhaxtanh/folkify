@@ -122,11 +122,41 @@ export function Practice() {
   const inTuneCountRef = useRef(0);
   const audioContextRef = useRef<AudioContext | null>(null);
 
+  const playMetronomeClick = (isAccent: boolean) => {
+    const context = getAudioContext();
+    if (!context) return;
+
+    const now = context.currentTime;
+    const oscillator = context.createOscillator();
+    const gainNode = context.createGain();
+
+    oscillator.type = "square";
+    oscillator.frequency.value = isAccent ? 1650 : 1200;
+
+    gainNode.gain.setValueAtTime(0.0001, now);
+    gainNode.gain.exponentialRampToValueAtTime(isAccent ? 0.22 : 0.14, now + 0.004);
+    gainNode.gain.exponentialRampToValueAtTime(0.0001, now + 0.06);
+
+    oscillator.connect(gainNode);
+    gainNode.connect(context.destination);
+    oscillator.start(now);
+    oscillator.stop(now + 0.065);
+  };
+
+  const triggerMetronomeBeat = (beatIndex: number) => {
+    setCurrentBeat(beatIndex);
+    if (selectedPattern.pattern[beatIndex] !== 1) return;
+    playMetronomeClick(selectedPattern.accent.includes(beatIndex));
+  };
+
   useEffect(() => {
     if (isPlaying) {
+      beatIndexRef.current = 0;
+      triggerMetronomeBeat(0);
       intervalRef.current = setInterval(() => {
-        beatIndexRef.current = (beatIndexRef.current + 1) % selectedPattern.pattern.length;
-        setCurrentBeat(beatIndexRef.current);
+        const nextBeat = (beatIndexRef.current + 1) % selectedPattern.pattern.length;
+        beatIndexRef.current = nextBeat;
+        triggerMetronomeBeat(nextBeat);
       }, (60 / bpm / 2) * 1000);
     } else {
       if (intervalRef.current) clearInterval(intervalRef.current);
@@ -280,6 +310,16 @@ export function Practice() {
     setPressedNote(i);
     playScaleNote(i);
     setTimeout(() => setPressedNote(null), 300);
+  };
+
+  const toggleMetronome = () => {
+    if (!isPlaying) {
+      const context = getAudioContext();
+      if (context?.state === "suspended") {
+        void context.resume();
+      }
+    }
+    setIsPlaying((prev) => !prev);
   };
 
   const activeSequence = aiSequences[sequenceIndex];
@@ -446,7 +486,7 @@ export function Practice() {
                   <RotateCcw size={18} className="text-[#2D6A4F]" />
                 </button>
                 <button
-                  onClick={() => setIsPlaying(!isPlaying)}
+                  onClick={toggleMetronome}
                   className="flex-1 h-12 bg-gradient-to-r from-[#1A3A2B] to-[#2D6A4F] rounded-full flex items-center justify-center gap-2 shadow-lg active:scale-[0.97] transition-transform"
                 >
                   {isPlaying ? (

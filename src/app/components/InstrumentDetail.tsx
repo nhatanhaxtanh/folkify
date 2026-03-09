@@ -47,7 +47,7 @@ export function InstrumentDetail() {
     <div className="flex flex-col min-h-full bg-[#F7FAF8]">
       {/* Hero */}
       <div className="relative h-56 overflow-hidden">
-        <img src={instrument.image} alt={instrument.name} className="w-full h-full object-cover" />
+        <img src={instrument.image} alt={instrument.name} className="w-full h-full object-cover object-[50%_22%]" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#1A3A2B]/90 via-black/20 to-black/10" />
 
         {/* Back button */}

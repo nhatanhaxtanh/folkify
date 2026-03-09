@@ -13,8 +13,8 @@ import {
   FileText,
 } from "lucide-react";
 import { instruments } from "../data/instruments";
-import danTranhImg from "../../assets/dantranh.jpg";
-import saoImg from "../../assets/sao.jpg";
+import danTranhImg from "@/assets/dantranh.jpg";
+import saoImg from "../../assets/sao.png";
 import danBauImg from "../../assets/danbau.jpg";
 import danNguyetImg from "../../assets/dannguyet.jpg";
 import danNhiImg from "../../assets/dannhi.jpg";
@@ -277,7 +277,7 @@ export function Home() {
             <img
               src={featuredInstrument.image}
               alt={featuredInstrument.name}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover object-[50%_22%]"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#1A3A2B]/80 via-black/20 to-transparent" />
             <div className="absolute bottom-0 left-0 right-0 p-4">
@@ -332,7 +332,7 @@ export function Home() {
                   <img
                     src={instrumentPhotos[inst.id] || ""}
                     alt={inst.name}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover object-[50%_22%]"
                   />
                 </div>
                 <p

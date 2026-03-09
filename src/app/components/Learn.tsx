@@ -113,7 +113,7 @@ export function Learn() {
                 className={`relative h-32 cursor-pointer active:opacity-95 transition-opacity`}
                 onClick={() => navigate(`/learn/${inst.id}`)}
               >
-                <img src={inst.image} alt={inst.name} className="w-full h-full object-cover" />
+                <img src={inst.image} alt={inst.name} className="w-full h-full object-cover object-[50%_22%]" />
                 <div className={`absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent`} />
                 <div className={`absolute inset-0 bg-gradient-to-br ${inst.bgGradient} opacity-30`} />
                 <div className="absolute bottom-0 left-0 right-0 p-4 flex items-end justify-between">

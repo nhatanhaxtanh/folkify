@@ -43,7 +43,7 @@ export const instruments: Instrument[] = [
     emoji: "🎵",
     color: "#B45309",
     bgGradient: "from-amber-600 to-amber-800",
-    image: "https://images.unsplash.com/photo-1769867303648-0a3ed8115440?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0cmFkaXRpb25hbCUyMEFzaWFuJTIweml0aGVyJTIwaW5zdHJ1bWVudCUyMGNsb3NlJTIwdXB8ZW58MXx8fHwxNzcyNzg3MzEzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+    image: "https://commons.wikimedia.org/wiki/Special:FilePath/%C3%90%C3%A0n%20Tranh.jpg",
     shortDesc: "Đàn tranh 16 dây, âm thanh trong trẻo, thanh thoát",
     description:
       "Đàn tranh là nhạc cụ dây gảy truyền thống của Việt Nam, có 16 dây kim loại căng trên thân đàn hình thang dài. Tiếng đàn tranh trong trẻo, thanh thoát như tiếng suối chảy, thường được dùng trong nhạc thính phòng và biểu diễn dân tộc.",
@@ -171,7 +171,7 @@ export const instruments: Instrument[] = [
     emoji: "🎋",
     color: "#15803D",
     bgGradient: "from-green-600 to-emerald-800",
-    image: "https://images.unsplash.com/photo-1672578249566-3f4b6d564aa2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxiYW1ib28lMjBmbHV0ZSUyMGluc3RydW1lbnQlMjBtdXNpY3xlbnwxfHx8fDE3NzI3ODczMTV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+    image: "https://commons.wikimedia.org/wiki/Special:FilePath/Th%E1%BB%95i%20s%C3%A1o.jpg",
     shortDesc: "Sáo làm từ ống trúc, âm thanh trong sáng và gần gũi thiên nhiên",
     description:
       "Sáo trúc là nhạc cụ hơi truyền thống, được làm từ ống trúc già tự nhiên. Tiếng sáo mang âm điệu trong sáng, gần gũi thiên nhiên, thường gắn với hình ảnh đồng quê Việt Nam.",
@@ -269,7 +269,7 @@ export const instruments: Instrument[] = [
     emoji: "🎶",
     color: "#7C3AED",
     bgGradient: "from-violet-600 to-purple-800",
-    image: "https://images.unsplash.com/photo-1762006211376-b22a3134cc58?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxBc2lhbiUyMHdvbWFuJTIwcGxheWluZyUyMHN0cmluZyUyMGluc3RydW1lbnQlMjBtdXNpYyUyMGxlc3NvbnxlbnwxfHx8fDE3NzI3ODczMTJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+    image: "https://commons.wikimedia.org/wiki/Special:FilePath/Vietnamese%20musical%20instrument%20Dan%20bau%202.jpg",
     shortDesc: "Đàn một dây độc đáo, tiếng vang ngân nga như giọng người",
     description:
       "Đàn bầu là nhạc cụ dây gảy độc đáo nhất thế giới với chỉ một dây. Âm thanh của đàn bầu được tạo ra bằng cách gảy dây và uốn cần đàn, tạo ra những âm thanh ngân nga, dìu dặt như giọng người thổn thức.",
@@ -356,7 +356,7 @@ export const instruments: Instrument[] = [
     emoji: "🌙",
     color: "#0369A1",
     bgGradient: "from-blue-600 to-sky-800",
-    image: "https://images.unsplash.com/photo-1763058389604-e407ce6bd702?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxndXFpbiUyMENoaW5lc2UlMjBsdXRlJTIwaW5zdHJ1bWVudHxlbnwxfHx8fDE3NzI3ODczMTZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+    image: "https://commons.wikimedia.org/wiki/Special:FilePath/Dan%20Nguyet%20%28Vietnamese%20moon%20lute%29.jpg",
     shortDesc: "Đàn 2 dây với hộp cộng hưởng hình mặt trăng đặc trưng",
     description:
       "Đàn nguyệt (đàn kìm) có hộp cộng hưởng hình tròn như mặt trăng, với 2 dây tơ hoặc nylon. Đây là nhạc cụ chủ đạo trong hát chầu văn và âm nhạc dân gian Bắc Bộ.",
@@ -420,7 +420,7 @@ export const instruments: Instrument[] = [
     emoji: "🎻",
     color: "#DC2626",
     bgGradient: "from-red-600 to-rose-800",
-    image: "https://images.unsplash.com/photo-1673637082482-55952ee63ef4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxWaWV0bmFtZXNlJTIwd29tYW4lMjBhbyUyMGRhaSUyMG11c2ljJTIwcGVyZm9ybWFuY2V8ZW58MXx8fHwxNzcyNzg3MzEzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+    image: "https://commons.wikimedia.org/wiki/Special:FilePath/Ngh%E1%BB%87%20s%C4%A9%20%C4%91%C3%A0n%20nh%E1%BB%8B.jpg",
     shortDesc: "Đàn 2 dây kéo cung, âm thanh da diết, sâu lắng",
     description:
       "Đàn nhị là nhạc cụ dây kéo có 2 dây, dùng cung vĩ bằng lông đuôi ngựa. Âm thanh đàn nhị da diết, sâu lắng, thường dùng để đệm cho hát chèo, cải lương và các thể loại dân ca.",
@@ -484,7 +484,7 @@ export const instruments: Instrument[] = [
     emoji: "🎼",
     color: "#9A3412",
     bgGradient: "from-orange-700 to-red-900",
-    image: "https://images.unsplash.com/photo-1691319845092-919e48f2e213?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1080",
+    image: "https://commons.wikimedia.org/wiki/Special:FilePath/Pipa%20player.JPG",
     shortDesc: "Đàn 4 dây hình quả lê, âm thanh sang trọng và biểu cảm",
     description:
       "Đàn tỳ bà là nhạc cụ dây gảy có lịch sử lâu đời, thường xuất hiện trong nhạc cung đình và dàn nhạc dân tộc. Âm sắc của đàn tỳ bà trong sáng, linh hoạt, thể hiện tốt cả giai điệu trữ tình lẫn tiết tấu nhanh.",

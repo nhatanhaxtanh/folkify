@@ -70,7 +70,7 @@ export function LessonDetail() {
   return (
     <div className="flex flex-col min-h-full bg-[#F7FAF8]">
       {/* Header */}
-      <div className="bg-[#1A3A2B] px-5 pt-12 pb-8 relative overflow-hidden">
+      <div className="header-green-full bg-[#1A3A2B] px-5 pt-12 pb-8 relative overflow-hidden">
         <div className="absolute -top-8 -right-8 w-36 h-36 rounded-full bg-white/5" />
         <div className="absolute -bottom-4 left-0 right-0 h-10 bg-[#F7FAF8] rounded-t-3xl" />
 

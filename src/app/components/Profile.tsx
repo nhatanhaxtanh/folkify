@@ -111,7 +111,7 @@ export function Profile() {
   return (
     <div className="flex flex-col min-h-full bg-[#F7FAF8]">
       {/* Header */}
-      <div className="bg-[#1A3A2B] px-5 pt-12 pb-8 relative overflow-hidden">
+      <div className="header-green-full bg-[#1A3A2B] px-5 pt-12 pb-8 relative overflow-hidden">
         <div className="absolute -top-10 -right-10 w-40 h-40 rounded-full bg-white/5" />
         <div className="absolute bottom-0 -left-6 w-24 h-24 rounded-full bg-white/5" />
 

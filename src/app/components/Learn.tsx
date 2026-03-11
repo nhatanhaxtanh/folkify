@@ -23,7 +23,7 @@ export function Learn() {
   return (
     <div className="flex flex-col min-h-full bg-[#F7FAF8]">
       {/* Header */}
-      <div className="bg-[#1A3A2B] px-5 pt-12 pb-6 relative overflow-hidden">
+      <div className="header-green-full bg-[#1A3A2B] px-5 pt-12 pb-6 relative overflow-hidden">
         <div className="absolute -top-10 -right-10 w-40 h-40 rounded-full bg-white/5" />
         <div className="relative">
           <div className="flex items-center gap-1.5 mb-4 -mt-2">

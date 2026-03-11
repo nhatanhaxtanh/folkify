@@ -94,7 +94,7 @@ export function Home() {
   return (
     <div className="flex flex-col min-h-full">
       {/* Header */}
-      <div className="bg-[#1A3A2B] px-5 pt-12 pb-8 relative overflow-hidden">
+      <div className="header-green-full bg-[#1A3A2B] px-5 pt-12 pb-8 relative overflow-hidden">
         <div className="absolute -top-8 -right-8 w-40 h-40 rounded-full bg-white/5" />
         <div className="absolute top-8 -right-4 w-24 h-24 rounded-full bg-white/5" />
         <div className="absolute -bottom-6 -left-6 w-32 h-32 rounded-full bg-white/5" />

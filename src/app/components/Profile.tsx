@@ -19,6 +19,7 @@ import {
 import { instruments } from "../data/instruments";
 import { useSubscription } from "../subscription";
 import folkifyLogo from "../../assets/logofolkify.png";
+import { logout } from "../auth";
 
 const weekDays = ["T2", "T3", "T4", "T5", "T6", "T7", "CN"];
 const studyData = [25, 45, 0, 60, 30, 45, 20];
@@ -94,7 +95,15 @@ export function Profile() {
       items: [
         { icon: HelpCircle, label: "Trung tâm hỗ trợ", action: () => {} },
         { icon: Star, label: "Đánh giá ứng dụng", action: () => {} },
-        { icon: LogOut, label: "Đăng xuất", action: () => {}, danger: true },
+        {
+          icon: LogOut,
+          label: "Đăng xuất",
+          action: () => {
+            logout();
+            navigate("/login");
+          },
+          danger: true,
+        },
       ],
     },
   ];

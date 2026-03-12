@@ -19,7 +19,7 @@ import {
 import { instruments } from "../data/instruments";
 import { useSubscription } from "../subscription";
 import folkifyLogo from "../../assets/logofolkify.png";
-import { logout } from "../auth";
+import { getCurrentUser, logout } from "../auth";
 
 const weekDays = ["T2", "T3", "T4", "T5", "T6", "T7", "CN"];
 const studyData = [25, 45, 0, 60, 30, 45, 20];
@@ -29,6 +29,7 @@ export function Profile() {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState(0);
   const { isPremium } = useSubscription();
+  const userName = getCurrentUser()?.name ?? "Học viên";
 
   const completedLessons = instruments.reduce(
     (acc, i) => acc + i.lessons.filter((l) => l.completed).length,
@@ -137,7 +138,7 @@ export function Profile() {
             </button>
           </div>
           <h1 className="text-white text-xl" style={{ fontWeight: 700 }}>
-            Nguyễn Minh Anh
+            {userName}
           </h1>
           <p className="text-[#52B788] text-sm mt-0.5">Học viên · 30 ngày</p>
 

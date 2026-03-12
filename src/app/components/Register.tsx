@@ -2,7 +2,7 @@ import { FormEvent, useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { ArrowLeft, Eye, EyeOff, Lock, Mail, User } from "lucide-react";
 import folkifyLogo from "../../assets/logofolkify.png";
-import { login } from "../auth";
+import { login, registerUser } from "../auth";
 
 export function Register() {
   const navigate = useNavigate();
@@ -32,8 +32,14 @@ export function Register() {
       return;
     }
 
+    const registerResult = registerUser({ name, email, password });
+    if (!registerResult.ok) {
+      setError(registerResult.error);
+      return;
+    }
+
     setError("");
-    login();
+    login(email);
     navigate("/", { replace: true });
   }
 

@@ -2,7 +2,7 @@ import { FormEvent, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import { Eye, EyeOff, Lock, Mail } from "lucide-react";
 import folkifyLogo from "../../assets/logofolkify.png";
-import { login } from "../auth";
+import { authenticateUser, login } from "../auth";
 
 export function Login() {
   const navigate = useNavigate();
@@ -24,7 +24,14 @@ export function Login() {
       return;
     }
 
-    login();
+    const loginResult = authenticateUser({ email, password });
+    if (!loginResult.ok) {
+      setError(loginResult.error);
+      return;
+    }
+
+    setError("");
+    login(loginResult.user.email);
     navigate(redirectTo, { replace: true });
   }
 

@@ -12,6 +12,10 @@ export interface Lesson {
   title: string;
   duration: string;
   level: "Beginner" | "Intermediate" | "Advanced";
+  clipStatus?: "available" | "in_progress" | "coming_soon";
+  clipProgress?: number;
+  clipEta?: string;
+  youtubeEmbedUrl?: string;
   completed?: boolean;
   description: string;
   steps: string[];
@@ -67,6 +71,9 @@ export const instruments: Instrument[] = [
         title: "Làm quen với đàn tranh",
         duration: "15 phút",
         level: "Beginner",
+        clipStatus: "available",
+        youtubeEmbedUrl:
+          "https://www.youtube.com/embed/PehCcuN10M0?list=PLPfXdEzIap5iEbYjcDI3vdgrM7nSML-3u&index=1",
         completed: true,
         description: "Tìm hiểu cấu tạo, cách giữ đàn và tư thế ngồi đúng.",
         videoThumb: "https://images.unsplash.com/photo-1769867303648-0a3ed8115440?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=200",
@@ -87,6 +94,9 @@ export const instruments: Instrument[] = [
         title: "Kỹ thuật gảy cơ bản",
         duration: "20 phút",
         level: "Beginner",
+        clipStatus: "available",
+        youtubeEmbedUrl:
+          "https://www.youtube.com/embed/fA5EjCZcARA?list=PLPfXdEzIap5iEbYjcDI3vdgrM7nSML-3u&index=2",
         completed: true,
         description: "Học cách gảy đơn âm và chạy ngón cơ bản.",
         videoThumb: "https://images.unsplash.com/photo-1762006211376-b22a3134cc58?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=200",
@@ -107,6 +117,9 @@ export const instruments: Instrument[] = [
         title: "Bài Lý Con Sáo",
         duration: "30 phút",
         level: "Beginner",
+        clipStatus: "available",
+        youtubeEmbedUrl:
+          "https://www.youtube.com/embed/tNcKXRrw3LI?list=PLPfXdEzIap5iEbYjcDI3vdgrM7nSML-3u&index=3",
         completed: false,
         description: "Học bài dân ca nổi tiếng Lý Con Sáo trên đàn tranh.",
         videoThumb: "https://images.unsplash.com/photo-1673637082482-55952ee63ef4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=200",
@@ -127,6 +140,9 @@ export const instruments: Instrument[] = [
         title: "Kỹ thuật rung dây",
         duration: "25 phút",
         level: "Intermediate",
+        clipStatus: "available",
+        youtubeEmbedUrl:
+          "https://www.youtube.com/embed/gJNvDxMxzis?list=PLPfXdEzIap5iEbYjcDI3vdgrM7nSML-3u&index=4",
         completed: false,
         description: "Kỹ thuật rung để tạo âm thanh mềm mại, cảm xúc.",
         videoThumb: "https://images.unsplash.com/photo-1763058389604-e407ce6bd702?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=200",
@@ -144,6 +160,9 @@ export const instruments: Instrument[] = [
         title: "Hòa tấu nhạc dân tộc",
         duration: "45 phút",
         level: "Advanced",
+        clipStatus: "available",
+        youtubeEmbedUrl:
+          "https://www.youtube.com/embed/95iWs1d_Dj8?list=PLPfXdEzIap5iEbYjcDI3vdgrM7nSML-3u&index=5",
         completed: false,
         description: "Tham gia hòa tấu cùng các nhạc cụ dân tộc khác.",
         videoThumb: "https://images.unsplash.com/photo-1759156240671-c646dc7386f4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=200",

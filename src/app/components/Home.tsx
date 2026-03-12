@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
+import { createPortal } from "react-dom";
 import {
   Bell,
   ChevronRight,
@@ -20,6 +21,7 @@ import danNguyetImg from "../../assets/dannguyet.jpg";
 import danNhiImg from "../../assets/dannhi.jpg";
 import tyBaImg from "../../assets/tyba.jpg";
 import folkifyLogo from "../../assets/logofolkify.png";
+import { getCurrentUser } from "../auth";
 
 const instrumentPhotos: Record<string, string> = {
   "dan-tranh": danTranhImg,
@@ -72,9 +74,97 @@ const achievements = [
   },
 ];
 
+type NotificationItem = {
+  id: string;
+  title: string;
+  message: string;
+  time: string;
+  unread: boolean;
+  action: "lesson" | "practice" | "sheets";
+  instrumentId?: string;
+  lessonId?: string;
+};
+
+const mockNotifications: NotificationItem[] = [
+  {
+    id: "notif-1",
+    title: "Nhắc học hôm nay",
+    message: "Bạn còn 15 phút luyện Sáo Trúc để giữ streak 7 ngày.",
+    time: "5 phút trước",
+    unread: true,
+    action: "practice",
+  },
+  {
+    id: "notif-2",
+    title: "Bài học mới",
+    message: "Đã mở khóa bài Lý Con Sáo cho Đàn Tranh.",
+    time: "1 giờ trước",
+    unread: true,
+    action: "lesson",
+    instrumentId: "dan-tranh",
+    lessonId: "dt-3",
+  },
+  {
+    id: "notif-3",
+    title: "Sheet nhạc mới",
+    message: "Thư viện vừa thêm 2 sheet dân ca mới.",
+    time: "Hôm qua",
+    unread: true,
+    action: "sheets",
+  },
+  {
+    id: "notif-4",
+    title: "Mục tiêu tuần",
+    message: "Bạn đã hoàn thành 4/5 buổi học tuần này.",
+    time: "2 ngày trước",
+    unread: false,
+    action: "practice",
+  },
+];
+
 export function Home() {
   const navigate = useNavigate();
-  const [notifCount] = useState(3);
+  const [showNotifications, setShowNotifications] = useState(false);
+  const [notifications, setNotifications] = useState(mockNotifications);
+  const userName = getCurrentUser()?.name ?? "Học viên";
+
+  const unreadCount = notifications.filter((n) => n.unread).length;
+
+  const markAllAsRead = () => {
+    setNotifications((prev) => prev.map((item) => ({ ...item, unread: false })));
+  };
+
+  const handleNotificationClick = (notification: NotificationItem) => {
+    setNotifications((prev) =>
+      prev.map((item) =>
+        item.id === notification.id ? { ...item, unread: false } : item,
+      ),
+    );
+    setShowNotifications(false);
+
+    if (notification.action === "practice") {
+      navigate("/practice");
+      return;
+    }
+
+    if (notification.action === "sheets") {
+      navigate("/sheets");
+      return;
+    }
+
+    if (
+      notification.action === "lesson" &&
+      notification.instrumentId &&
+      notification.lessonId
+    ) {
+      navigate(
+        `/learn/${notification.instrumentId}/lesson/${notification.lessonId}`,
+      );
+      return;
+    }
+
+    navigate("/learn");
+  };
 
   const totalLessons = instruments.reduce(
     (acc, i) => acc + i.lessons.length,
@@ -90,6 +180,85 @@ export function Home() {
       acc + i.lessons.filter((l) => l.completed).reduce((s, l) => s + l.xp, 0),
     0,
   );
+
+  const notificationOverlay =
+    showNotifications &&
+    createPortal(
+      <div className="fixed inset-0 z-[70]">
+        <button
+          aria-label="Đóng thông báo"
+          onClick={() => setShowNotifications(false)}
+          className="absolute inset-0 bg-black/20"
+        />
+        <div className="absolute top-24 left-1/2 -translate-x-1/2 w-full max-w-sm px-4">
+          <div className="bg-white rounded-2xl border border-[#D8F3DC] shadow-lg overflow-hidden">
+            <div className="px-4 py-3 border-b border-gray-100 flex items-center justify-between">
+              <p className="text-[#1A3A2B] text-sm" style={{ fontWeight: 700 }}>
+                Thông báo
+              </p>
+              <button
+                onClick={markAllAsRead}
+                className="text-[#2D6A4F] text-xs"
+                style={{ fontWeight: 600 }}
+              >
+                Đánh dấu đã đọc
+              </button>
+            </div>
+
+            {notifications.length === 0 ? (
+              <p className="px-4 py-6 text-center text-xs text-gray-400">
+                Chưa có thông báo mới
+              </p>
+            ) : (
+              <div className="max-h-72 overflow-y-auto">
+                {notifications.map((notification, index) => (
+                  <button
+                    key={notification.id}
+                    onClick={() => handleNotificationClick(notification)}
+                    className={`w-full px-4 py-3 text-left transition-colors active:bg-gray-50 ${
+                      index < notifications.length - 1
+                        ? "border-b border-gray-100"
+                        : ""
+                    }`}
+                  >
+                    <div className="flex items-start gap-3">
+                      <div className="pt-1">
+                        <span
+                          className={`block w-2 h-2 rounded-full ${
+                            notification.unread ? "bg-[#52B788]" : "bg-gray-300"
+                          }`}
+                        />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center justify-between gap-2">
+                          <p
+                            className={`text-sm truncate ${
+                              notification.unread
+                                ? "text-[#1A3A2B]"
+                                : "text-gray-600"
+                            }`}
+                            style={{ fontWeight: notification.unread ? 700 : 600 }}
+                          >
+                            {notification.title}
+                          </p>
+                          <span className="text-[10px] text-gray-400 whitespace-nowrap">
+                            {notification.time}
+                          </span>
+                        </div>
+                        <p className="text-xs text-gray-500 mt-1 leading-relaxed">
+                          {notification.message}
+                        </p>
+                      </div>
+                    </div>
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      </div>,
+      document.body,
+    );
 
   return (
     <div className="flex flex-col min-h-full">
@@ -120,11 +289,15 @@ export function Home() {
                 </p>
               </div>
             </div>
-            <button className="relative w-10 h-10 bg-white/10 rounded-full flex items-center justify-center border border-white/10">
+            <button
+              className="relative w-10 h-10 bg-white/10 rounded-full flex items-center justify-center border border-white/10"
+              onClick={() => setShowNotifications((prev) => !prev)}
+              aria-label="Mở thông báo"
+            >
               <Bell size={17} className="text-[#95D5B2]" />
-              {notifCount > 0 && (
+              {unreadCount > 0 && (
                 <span className="absolute -top-0.5 -right-0.5 w-4 h-4 bg-[#52B788] rounded-full text-[9px] font-bold text-[#1A3A2B] flex items-center justify-center">
-                  {notifCount}
+                  {unreadCount > 9 ? "9+" : unreadCount}
                 </span>
               )}
             </button>
@@ -133,7 +306,7 @@ export function Home() {
           {/* User greeting */}
           <div className="mb-4">
             <h1 className="text-white text-xl" style={{ fontWeight: 700 }}>
-              Nguyễn Minh Anh
+              {userName}
             </h1>
             <p className="text-[#52B788] text-sm mt-0.5">Học viên · Cấp độ 3</p>
           </div>
@@ -427,6 +600,7 @@ export function Home() {
           </div>
         </div>
       </div>
+      {notificationOverlay}
     </div>
   );
 }

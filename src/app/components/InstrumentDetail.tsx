@@ -12,11 +12,18 @@ import {
   MapPin,
   Layers,
   Zap,
+  Clock3,
 } from "lucide-react";
 import { instruments } from "../data/instruments";
+import { getCompletedLessonsCount, isLessonCompleted } from "../data/lessonProgress";
 import folkifyLogo from "../../assets/logofolkify.png";
 
 const tabs = ["Bài học", "Bài hát", "Thông tin"];
+const clipStatusLabel = {
+  available: "Đã có clip",
+  in_progress: "Clip đang hoàn thiện",
+  coming_soon: "Clip sắp có",
+} as const;
 
 export function InstrumentDetail() {
   const { id } = useParams();
@@ -37,7 +44,7 @@ export function InstrumentDetail() {
     );
   }
 
-  const completedLessons = instrument.lessons.filter((l) => l.completed).length;
+  const completedLessons = getCompletedLessonsCount(instrument);
   const progressPercent = Math.round((completedLessons / instrument.lessons.length) * 100);
 
   const beginnerLessons = instrument.lessons.filter((l) => l.level === "Beginner");
@@ -160,8 +167,10 @@ export function InstrumentDetail() {
             </p>
             {instrument.lessons.map((lesson, index) => {
               const isLocked = index > completedLessons;
-              const isCompleted = lesson.completed;
+              const isCompleted = isLessonCompleted(instrument.id, lesson);
               const isCurrent = index === completedLessons;
+              const clipStatus = lesson.clipStatus ?? "in_progress";
+              const isClipReady = clipStatus === "available";
 
               const levelStyle =
                 lesson.level === "Beginner"
@@ -184,10 +193,21 @@ export function InstrumentDetail() {
                 >
                   {/* Thumbnail + play */}
                   <div className="w-12 h-12 rounded-xl overflow-hidden flex-shrink-0 relative">
-                    <img src={lesson.videoThumb} alt={lesson.title} className="w-full h-full object-cover" />
+                    <img
+                      src={lesson.videoThumb}
+                      alt={lesson.title}
+                      className={`w-full h-full object-cover ${isClipReady ? "" : "opacity-70"}`}
+                    />
+                    {!isClipReady && (
+                      <span className="absolute top-0.5 left-0.5 rounded-full bg-amber-500 text-white px-1 py-0.5 text-[8px] leading-none">
+                        Clip
+                      </span>
+                    )}
                     <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
                       {isLocked ? (
                         <Lock size={14} className="text-white" />
+                      ) : !isClipReady ? (
+                        <Clock3 size={14} className="text-amber-200" />
                       ) : isCompleted ? (
                         <div className="w-5 h-5 rounded-full bg-[#2D6A4F] flex items-center justify-center">
                           <CheckCircle size={12} className="text-white" />
@@ -196,6 +216,13 @@ export function InstrumentDetail() {
                         <Play size={12} fill="white" className="text-white ml-0.5" />
                       )}
                     </div>
+                    {!isLocked && !isClipReady && (
+                      <div className="absolute inset-0 bg-black/45 flex items-center justify-center">
+                        <span className="text-[9px] text-white px-2 py-0.5 rounded-full bg-black/50">
+                          Chưa xem được
+                        </span>
+                      </div>
+                    )}
                   </div>
 
                   {/* Content */}
@@ -209,6 +236,9 @@ export function InstrumentDetail() {
                       </span>
                       <span className="text-gray-400 text-xs">{lesson.duration}</span>
                     </div>
+                    {!isClipReady && (
+                      <p className="text-[10px] text-amber-600 mt-0.5">{clipStatusLabel[clipStatus]}</p>
+                    )}
                   </div>
 
                   <div className="flex flex-col items-end gap-1">

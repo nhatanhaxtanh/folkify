@@ -1,10 +1,16 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
-import { Search, ChevronRight, Star, Lock, Play, Music2 } from "lucide-react";
+import { Search, ChevronRight, Star, Lock, Play, Music2, Clock3 } from "lucide-react";
 import { instruments, categories } from "../data/instruments";
+import { getCompletedLessonsCount, isLessonCompleted } from "../data/lessonProgress";
 import folkifyLogo from "../../assets/logofolkify.png";
 
 const levelTabs = ["Tất cả", "Beginner", "Intermediate", "Advanced"];
+const clipStatusLabel = {
+  available: "Đã có clip",
+  in_progress: "Clip đang hoàn thiện",
+  coming_soon: "Clip sắp có",
+} as const;
 
 export function Learn() {
   const navigate = useNavigate();
@@ -105,7 +111,7 @@ export function Learn() {
           </div>
         )}
         {filtered.map((inst) => {
-          const completedCount = inst.lessons.filter((l) => l.completed).length;
+          const completedCount = getCompletedLessonsCount(inst);
           const pct = Math.round((completedCount / inst.lessons.length) * 100);
 
           const beginnerCount = inst.lessons.filter((l) => l.level === "Beginner").length;
@@ -192,8 +198,11 @@ export function Learn() {
                 {(activeLevel === "Tất cả" ? inst.lessons.slice(0, 3) : visibleLessons.slice(0, 3)).map((lesson, idx) => {
                   const allLessons = inst.lessons;
                   const globalIdx = allLessons.indexOf(lesson);
-                  const completedSoFar = allLessons.filter((l) => l.completed).length;
+                  const completedSoFar = getCompletedLessonsCount(inst);
                   const isLocked = globalIdx > completedSoFar;
+                  const lessonCompleted = isLessonCompleted(inst.id, lesson);
+                  const clipStatus = lesson.clipStatus ?? "in_progress";
+                  const isClipReady = clipStatus === "available";
 
                   return (
                     <div
@@ -205,11 +214,22 @@ export function Learn() {
                     >
                       {/* Thumb */}
                       <div className="w-10 h-10 rounded-xl overflow-hidden flex-shrink-0 relative">
-                        <img src={lesson.videoThumb} alt={lesson.title} className="w-full h-full object-cover" />
+                        <img
+                          src={lesson.videoThumb}
+                          alt={lesson.title}
+                          className={`w-full h-full object-cover ${isClipReady ? "" : "opacity-70"}`}
+                        />
+                        {!isClipReady && (
+                          <span className="absolute top-0.5 left-0.5 rounded-full bg-amber-500 text-white px-1 py-0.5 text-[8px] leading-none">
+                            Clip
+                          </span>
+                        )}
                         <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
                           {isLocked ? (
                             <Lock size={12} className="text-white" />
-                          ) : lesson.completed ? (
+                          ) : !isClipReady ? (
+                            <Clock3 size={12} className="text-amber-200" />
+                          ) : lessonCompleted ? (
                             <div className="w-5 h-5 rounded-full bg-green-500 flex items-center justify-center">
                               <span className="text-white text-[10px]">✓</span>
                             </div>
@@ -217,9 +237,16 @@ export function Learn() {
                             <Play size={10} fill="white" className="text-white ml-0.5" />
                           )}
                         </div>
+                        {!isLocked && !isClipReady && (
+                          <div className="absolute inset-0 bg-black/45 flex items-center justify-center">
+                            <span className="text-[8px] text-white px-1.5 py-0.5 rounded-full bg-black/50">
+                              Chưa xem được
+                            </span>
+                          </div>
+                        )}
                       </div>
                       <div className="flex-1 min-w-0">
-                        <p className="text-gray-700 text-xs truncate" style={{ fontWeight: lesson.completed ? 400 : 600 }}>
+                        <p className="text-gray-700 text-xs truncate" style={{ fontWeight: lessonCompleted ? 400 : 600 }}>
                           {lesson.title}
                         </p>
                         <div className="flex items-center gap-2 mt-0.5">
@@ -230,6 +257,9 @@ export function Learn() {
                           }`}>{lesson.level}</span>
                           <span className="text-gray-400 text-[10px]">{lesson.duration}</span>
                         </div>
+                        {!isClipReady && (
+                          <p className="text-[10px] text-amber-600 mt-0.5">{clipStatusLabel[clipStatus]}</p>
+                        )}
                       </div>
                       <span className="text-[#2D6A4F] text-[10px] flex-shrink-0" style={{ fontWeight: 600 }}>+{lesson.xp} XP</span>
                     </div>

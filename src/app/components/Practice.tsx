@@ -23,7 +23,7 @@ import {
   Disc3,
 } from "lucide-react";
 import { instruments } from "../data/instruments";
-import { useRequirePremium, useSubscription } from "../subscription";
+import { useSubscription } from "../subscription";
 import folkifyLogo from "../../assets/logofolkify.png";
 
 const rhythmPatterns = [
@@ -90,8 +90,8 @@ function midiToFrequency(midi: number) {
 
 export function Practice() {
   const navigate = useNavigate();
-  const { isPremium } = useSubscription();
-  const requirePremium = useRequirePremium();
+  const { plan } = useSubscription();
+  const isProPlan = plan === "pro";
   const [activeSection, setActiveSection] = useState<"rhythm" | "scale" | "quiz" | "ai">("rhythm");
   const [selectedPattern, setSelectedPattern] = useState(rhythmPatterns[0]);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -234,11 +234,11 @@ export function Practice() {
   }, [activeSection, aiEnabled]);
 
   useEffect(() => {
-    if (!isPremium && activeSection === "ai") {
+    if (!isProPlan && activeSection === "ai") {
       setActiveSection("rhythm");
       stopAiDetection();
     }
-  }, [isPremium, activeSection]);
+  }, [isProPlan, activeSection]);
 
   useEffect(() => {
     if (aiEnabled) {
@@ -327,8 +327,14 @@ export function Practice() {
   const clampedCents = Math.max(-50, Math.min(50, centsOff ?? 0));
   const meterPosition = ((clampedCents + 50) / 100) * 100;
   const handleSectionChange = (section: "rhythm" | "scale" | "quiz" | "ai") => {
-    if (section === "ai" && !isPremium) {
-      requirePremium("AI Pitch");
+    if (section === "ai" && !isProPlan) {
+      navigate("/premium", {
+        state: {
+          from: "/practice",
+          feature: "AI Pitch",
+          requiredPlan: "pro",
+        },
+      });
       return;
     }
     setActiveSection(section);

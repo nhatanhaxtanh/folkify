@@ -28,8 +28,9 @@ const maxStudy = Math.max(...studyData);
 export function Profile() {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState(0);
-  const { isPremium } = useSubscription();
+  const { plan } = useSubscription();
   const userName = getCurrentUser()?.name ?? "Học viên";
+  const planLabel = plan === "free" ? "Free" : plan === "basic" ? "Basic" : "Pro";
 
   const completedLessons = instruments.reduce(
     (acc, i) => acc + i.lessons.filter((l) => l.completed).length,
@@ -206,12 +207,10 @@ export function Profile() {
             <p className="text-[#1A3A2B] text-sm" style={{ fontWeight: 700 }}>
               Subscription
             </p>
-            <p className="text-gray-500 text-xs mt-0.5">
-              Gói hiện tại:{" "}
-              <span style={{ fontWeight: 700 }}>
-                {isPremium ? "Premium" : "Free"}
-              </span>
-            </p>
+              <p className="text-gray-500 text-xs mt-0.5">
+                Gói hiện tại:{" "}
+                <span style={{ fontWeight: 700 }}>{planLabel}</span>
+              </p>
           </div>
           <ChevronRight size={16} className="text-gray-300" />
         </button>

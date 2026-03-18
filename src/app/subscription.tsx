@@ -1,7 +1,7 @@
 import { createContext, useContext, useMemo, useState, type ReactNode } from "react";
 import { useLocation, useNavigate } from "react-router";
 
-export type PlanTier = "free" | "premium";
+export type PlanTier = "free" | "basic" | "pro";
 
 const STORAGE_KEY = "folkify_plan_tier";
 
@@ -18,7 +18,9 @@ const SubscriptionContext = createContext<SubscriptionContextValue | null>(null)
 function getInitialPlan(): PlanTier {
   if (typeof window === "undefined") return "free";
   const saved = window.localStorage.getItem(STORAGE_KEY);
-  return saved === "premium" ? "premium" : "free";
+  if (saved === "basic") return "basic";
+  if (saved === "pro" || saved === "premium") return "pro";
+  return "free";
 }
 
 export function SubscriptionProvider({ children }: { children: ReactNode }) {
@@ -32,9 +34,9 @@ export function SubscriptionProvider({ children }: { children: ReactNode }) {
   const value = useMemo(
     () => ({
       plan,
-      isPremium: plan === "premium",
+      isPremium: plan !== "free",
       setPlan,
-      upgradeToPremium: () => setPlan("premium"),
+      upgradeToPremium: () => setPlan("pro"),
       downgradeToFree: () => setPlan("free"),
     }),
     [plan],
